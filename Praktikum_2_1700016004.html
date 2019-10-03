@@ -1,0 +1,55 @@
+
+
+<html>
+    <head>
+        <title> Interaktif </title>
+    <style type="text/css">
+    
+    canvas{
+                background-color: #A9A9A9;       
+            }
+        
+    </style>
+    </head>
+    <body>
+        <canvas height="480" width="800" id="canvas">
+        <script type="text/javascript">
+        
+        var c = document.getElementById('canvas');
+            var ctx = c.getContext('2d');
+
+            document.body.addEventListener('mousedown', drawline);
+            function drawline(e)
+            {
+                var x = e.offsetX;
+                var y = e.offsetY;
+                ctx.lineTo(x,y);
+                ctx.lineWidth = 2;
+                ctx.strokeStyle = '#000000';
+                ctx.stroke();
+            }
+
+            document.body.addEventListener('keydown', enter);
+            function enter(e)
+            {
+                var code = e.keyCode;
+                if (code == 13){                
+                    ctx.lineWidth = 2;
+                    ctx.strokeStyle = '#000000';
+                    ctx.fillStyle = '#7FFF00';
+                    ctx.fill();
+                    ctx.stroke();
+                } else {
+                    ctx.beginPath();
+                    var x = e.offsetX;
+                    var y = e.offsetY;
+                    ctx.lineTo(x,y);
+                    ctx.lineWidth = 2;
+                    ctx.strokeStyle = '#000000';
+                    ctx.stroke();
+                }
+            }
+        
+        </script>
+    </body>
+</html>
