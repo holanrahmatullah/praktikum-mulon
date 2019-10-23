@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,13 +14,13 @@
 
 <body>
 
-<canvas id="CanvasTedy" height="500" width="1000">
+<canvas id="CanvasHolan" height="500" width="1000">
 	
 </canvas>
 
 <script type="text/javascript">
 	
-				var canvas = document.getElementById('CanvasTedy');
+				var canvas = document.getElementById('CanvasHolan');
 				var ctx = canvas.getContext("2d");
 				var radius = 30;
 				var centerX = canvas.width / 2;
@@ -32,7 +33,7 @@
 
 				
 				ctx.arc(centerX, centerY, 180, 0, 2 * Math.PI);
-				ctx.fillStyle = "#8B0000";
+				ctx.fillStyle = "#5F190A";
 				ctx.fill();
 				ctx.strokeStyle = gradient;
 				ctx.lineWidth = 5;
@@ -42,21 +43,30 @@
 
 				ctx.beginPath();
 				ctx.arc(centerX, centerY, 130, 0, 2 * Math.PI);
-				ctx.fillStyle = "#FFA500";
+				ctx.fillStyle = "#81F7F3";
 				ctx.fill();
+
+				
 
 				//membuat segi empat 
 				ctx.beginPath();
 				var recWidth = 130;
 				var recHeight = 130;
-				var xPos = (document.getElementById("CanvasTedy").width/2) - (recWidth/2);
-				var yPos = (document.getElementById("CanvasTedy").height/2) - (recHeight/2);
+				var xPos = (document.getElementById("CanvasHolan").width/2) - (recWidth/2);
+				var yPos = (document.getElementById("CanvasHolan").height/2) - (recHeight/2);
 				ctx.rect(xPos,yPos,recWidth,recHeight);
-				ctx.fillStyle = '#4682B4';
+				ctx.fillStyle = '#468871';
 				ctx.fill();
 				ctx.strokeStyle = gradient;
 				ctx.lineWidth = 5;
 				ctx.stroke();
+
+
+
+				ctx.beginPath();
+				ctx.arc(centerX, centerY, 13, 0, 2 * Math.PI);
+				ctx.fillStyle = "#FFA500";
+				ctx.fill();
 
 				// membuat segitiga dengan garis kiri
 
@@ -65,7 +75,7 @@
 				ctx.lineTo(centerX - 300, centerY - 110); // titik ke-2
 				ctx.lineTo(centerX - 300, centerY + 110); // titik ke-3
 				ctx.closePath(); // titik ke-3 ke titik awal
-				ctx.fillStyle = "GREEN";
+				ctx.fillStyle = "BLUE";
 				ctx.fill();
 
 				// membuat segitiga dengan garis kanan
@@ -75,7 +85,7 @@
 				ctx.lineTo(centerX + 300, centerY + 110); // titik ke-2
 				ctx.lineTo(centerX + 300, centerY - 110); // titik ke-3
 				ctx.closePath(); // titik ke-3 ke titik awal
-				ctx.fillStyle = "GREEN";
+				ctx.fillStyle = "BLUE";
 				ctx.fill();
 				
 
