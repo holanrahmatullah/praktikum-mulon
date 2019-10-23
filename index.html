@@ -1,22 +1,95 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <title>Praktikum Multimedia Online</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
 
-	<head>
-		<title>Praktikum Multimedia Online</title>
-	</head>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-	<body>
-		<h1>Hasil Praktikum Multimedia Online</h1>
-		<p> Holan Rahmatullah </p>
+/* Style the header */
+header {
+  background-color:burlywood;
+  padding: 10px;
+  text-align: center;
+  font-size: 15px;
+  color: white;
+}
+h1{
+    color: burlywood;
+}
+/* Create two columns/boxes that floats next to each other */
+nav {
+  float: left;
+  width: 40%;
+  height: 500px; /* only for demonstration, should be removed */
+  background : transparent;
+  padding: 0px;
+}   
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+article {
+  float: left;
+  padding: 5px;
+  width: 60%;
+  text-align: center;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans';
+  background-color: azure;
+  height: 500px; /* only for demonstration, should be removed */
+}
+
+/* Clear floats after the columns */
+section:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media (max-width: 600px) {
+  nav, article {
+    width: 100%;
+    height: auto;
+  }
+}
+</style>
+</head>
+<body>
+<header>
+        <h1 style="color :black" >Hasil Praktikum Multimedia Online</h1>
+		<p> Holan Rahmatullah Suhut Nadenggan </p>
 		<p> 1700016004 </p>
+</header>
 
-	<ul>
-	<li> <a href="Praktikum_1_1700016004.html">Praktikum 1 - Canvas HTML</a>
-	</li>
-	<li> <a href="Praktikum_2_1700016004.html">Praktikum 2 - Interaktivitas</a>
-	</li>
-	<li> <a href="Praktikum_3_1700016004.html">Praktikum 3 - Canvas Pattren</a>
-	</li>	
-	</ul>
+<section>
+  <nav style="animation-direction: alternate-reverse;">
+        <ul>
+                <li> <a href="Praktikum_1_1700016004.html">Praktikum 1 - Canvas HTML</a>
+                </li>
+                <li> <a href="Praktikum_2_1700016004.html">Praktikum 2 - Interaktivitas</a>
+                </li>
+                <li> <a href="Praktikum_3_1700016004.html">Praktikum 3 - Canvas Pattren</a>
+                </li>	
+                </ul>
+  </nav>
+  <article>
+<h2 style="font-family: fantasy;">Showcasing The Work Of Creativity In Online Multimedia</h2>       
+</article>
+    
+</section>
 
-	</body>
+
+
+
+</body>
 </html>
