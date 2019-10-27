@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Starter Canvas HTML app</title>
+   <head>
+      <style type="text/css">
+         body{
+            margin:0;
+         }         
+         canvas{
+            background-color: lightblue;    
+                
+         }
+      </style>
+<body>      
+<script>
+
+
+var ball=[];
+
+
+
+function startApp() 
+{
+   myApp.start();
+   for(var i=0;i<100;i++)
+   {
+       var x=Math.random()*myApp.canvas.width;
+       var y=Math.random()*myApp.canvas.height;   
+       ball[i]=new Sprite(x,y,10,'lightcoral');
+    }
+}
+var myApp = {
+    canvas : document.createElement("canvas"),
+    start : function() {
+        this.canvas.width = 2000;
+        this.canvas.height = 1000;
+        this.context = this.canvas.getContext("2d");
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        appControl();
+        this.interval = setInterval(appLoop, 20);
+    },
+    clear : function() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+}
+
+
+function appLoop() {
+     myApp.clear();
+
+    for (var i=0; i<ball.length; i++)
+    {
+        var arah=Math.random()>0.5 ? 1:-1;
+        var r1=Math.random()*10*arah;
+        var r2=Math.random()*40*arah;
+
+
+        ball[i].x+=r1;
+        ball[i].y+=r2;
+        
+        if(ball[i].x>myApp.canvas.width)ball[i].x=80;
+        if(ball[i].y>myApp.canvas.height)ball[i].y=30;
+        ball[i].update();
+    }
+}
+
+function Sprite(x, y,radius,color) {
+    this.x = x;
+    this.y = y;
+    this.radius=radius;
+    this.color=color;    
+    this.speed=20;
+    var ctx=myApp.context;
+    this.update=function()
+    {
+        ctx.beginPath();
+        ctx.arc(this.x,this.y,this.radius,0,2*Math.PI);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+    }
+}
+
+function appControl()
+{
+    document.body.addEventListener('mousedown',function(e){
+
+    })
+}
+
+
+startApp();
+
+</script>
+</body>
+</head>
