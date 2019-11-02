@@ -1,0 +1,207 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Ujian Tengah Semester</title>
+		<style type="text/css">
+			body{ 
+				margin:0px;
+			}
+			canvas {
+					background-color: #cccc;				
+				}   
+			.text {
+					position: absolute;
+					top: 20%;
+					right: 50%;
+					-webkit-transform: translate(50%, -50%);
+							transform: translate(50%, -50%);
+							transform-style: initial;
+					color:floralwhite;
+					max-width: 100%;
+					padding: 2em 3em;
+					background: rgba(0, 0, 0, 0.4);
+					text-shadow: 8px 5px 15px royalblue;
+					font-family: sans-serif;
+				}
+		</style>
+
+<body>
+	
+		<div class="text" align="center">
+				<h1>Holan Rahmatullah S N</h1>
+				<p>1700016004</p>
+				
+				</div>
+				
+	<canvas id="canvas"> </canvas>
+	
+
+
+	<script type="text/javascript">
+	
+		function startApp(){
+			
+			var keyword = "Multimedia Online";
+				var canvas;
+				var context;
+				
+				var Canvas;
+				var Context;
+				
+				var intensiveness = 9;
+				
+				//array partike untuk mengumpulkan pixel
+				var parts = []; 
+				
+				var mouse = {x:-100,y:-100};
+				var mouseOnScreen = false;
+				
+				var count = 0;
+				var itertot = 40;
+				
+				this.initialize = function(canvas_id){
+					canvas = document.getElementById(canvas_id);
+					context = canvas.getContext('2d');
+					
+					canvas.width = window.innerWidth;
+					canvas.height = window.innerHeight;
+					
+					Canvas = document.createElement('canvas');
+					Context = Canvas.getContext('2d');
+					
+					Canvas.width = window.innerWidth;
+					Canvas.height = window.innerHeight;
+				
+					canvas.addEventListener('mousemove', MouseMove, false);
+					canvas.addEventListener('mouseout', MouseOut, false);
+						
+					start();
+				}
+				
+			var start = function(){
+					
+				Context.fillStyle = "#000000";
+				Context.font = '190px impact'; //membuat keyword menjadi 190px 
+				Context.fillText(keyword, 80, 500);// posisi keyword
+
+				
+				clear();	
+				getCordinat();
+			}
+			
+			var getCordinat = function(){
+				var imageData, pixel, height, width;
+				
+				imageData = Context.getImageData(0, 0, canvas.width, canvas.height);
+				//mengumpulkan semua pixel. 
+				for(height = 0; height < Canvas.height; height += intensiveness){
+					for(width = 0; width < Canvas.width; width += intensiveness){   
+					pixel = imageData.data[((width + (height * Canvas.width)) * 4) - 5];
+						//pixel yang berwarna hitam tidak bisa di tarik.
+						if(pixel == 255) {
+							drawCircle(width, height);
+						}
+					}
+				}
+				
+				setInterval( appLoop, 40 );
+			}
+			
+			var drawCircle = function(x, y){
+				
+				var startx = (Math.random() * canvas.width);
+				var starty = (Math.random() * canvas.height);
+				
+				var velx = (x - startx) / itertot;
+				var vely = (y - starty) / itertot;	
+				
+				parts.push(
+					{c: '#' + (Math.random() * 0x949494 + 0xaaaaaa | 0).toString(16),
+					x: x, //posisi yang dituju	
+					y: y,
+					x2: startx, //posisi awal
+					y2: starty,
+					//melepaskan circel pixel
+					r: true, 
+					v:{x:velx , y: vely}
+					}
+				)
+			}
+				
+			var appLoop = function(){
+				var i, dx, dy, sqrDist, scale;
+				count++;
+				clear();
+				for (i = 0; i < parts.length; i++){
+					
+					//jika titik pixel telah dirilis.
+					if (parts[i].r == true){
+
+						
+						parts[i].x2 += parts[i].v.x;
+						parts[i].y2 += parts[i].v.y;
+
+					//membuat atau menghapus kemungkina adanya titik yang diluar
+					}
+					if (count == itertot){
+						parts[i].v = {x:(Math.random() * 6) * 2 - 6 , y:(Math.random() * 6) * 2 - 6};
+						parts[i].r = false;
+					}
+					
+					//menghilangkan pelacakan mouse munggunkan svg
+					//menemukan jarak mouse
+					dx = parts[i].x - mouse.x;
+					dy = parts[i].y - mouse.y;
+					sqrDist =  Math.sqrt(dx*dx + dy*dy);
+					
+					if (sqrDist < 20){
+						parts[i].r = true;
+					} 			
+
+					//mengambar circle
+					context.fillStyle = parts[i].c;
+					context.beginPath();
+					context.arc(parts[i].x2, parts[i].y2, 4 ,0 , Math.PI*2, true);
+					context.closePath();
+					context.fill();	
+						
+				}	
+			}
+			
+			var MouseMove = function(e) {
+				if (e.layerX || e.layerX == 0) {
+					//Menghapus Particel Ulang
+					mouseOnScreen = true;
+					
+					
+					mouse.x = e.layerX - canvas.offsetLeft;
+					mouse.y = e.layerY - canvas.offsetTop;
+				}
+			}
+			
+			var MouseOut = function(e) {
+				mouseOnScreen = false;
+				mouse.x = -100;
+				mouse.y = -100;	
+			}
+
+			
+			//menghapus screen
+			var clear = function(){
+				context.fillStyle = '#333333'; //ini untuk latar belkang gambar di setting default, di karenakan agar sesaui dengan warna partikel pixelnya.
+				context.beginPath();
+				context.rect(0, 0, canvas.width, canvas.height);
+				context.closePath();
+				context.fill();
+			}
+		}
+
+		var startApp = new startApp();
+		startApp.initialize("canvas");
+
+  </script>
+    
+	
+</body>      
+</html>
